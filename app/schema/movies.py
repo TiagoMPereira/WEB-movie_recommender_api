@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 
 
 @dataclass
@@ -17,3 +17,6 @@ class MovieSchema:
     poster_path: str
     imdb_id: str
     tmdb_id: int
+
+    def dict(self):
+        return {k: str(v) for k, v in asdict(self).items()}

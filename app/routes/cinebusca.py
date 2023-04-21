@@ -4,14 +4,6 @@ from schema.input_recommendation import InputRecommendation
 
 router = APIRouter()
 
-@router.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-@router.get("/router")
-def route123():
-    return {"route": "Hello World"}
-
 
 @router.get("/movie/{id_movie}")
 def get_movie(id_movie: str):
@@ -22,7 +14,8 @@ def get_movie(id_movie: str):
 
 @router.post("/recommend")
 def recommend_movie(input_recommendation: InputRecommendation):
+    print(input_recommendation)
     movie_service = MovieService()
-    print(InputRecommendation(input_recommendation))
-    recommendation = movie_service.get_recommendation(InputRecommendation(input_recommendation))
-    return {"status": recommendation, "input": input_recommendation}
+    recommendation = movie_service.get_recommendation(input_recommendation)
+    result = recommendation | {"input": input_recommendation}
+    return result

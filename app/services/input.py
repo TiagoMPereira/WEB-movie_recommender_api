@@ -3,8 +3,8 @@ from schema.input_recommendation import InputRecommendation
 
 class InputService():
 
-    def _validate_genders(self, genders: list):
-        return not (len(genders) == 0)
+    def _validate_genres(self, genres: list):
+        return not (len(genres) == 0)
     
     def _validate_runtime(self, runtime: float):
         return not (runtime is None)
@@ -16,11 +16,11 @@ class InputService():
         return not (language is None or language == "")
 
     def validate_input_data(self, input_recommendation: InputRecommendation):
-        is_gender_valid = self._validate_genders(input_recommendation.genders)
+        is_genre_valid = self._validate_genres(input_recommendation.genres)
         is_runtime_valid = self._validate_runtime(input_recommendation.runtime)
         is_release_year_valid = self._validate_release_year(input_recommendation.release_year)
         is_language_valid = self._validate_language(input_recommendation.language)
 
-        is_valid_input = (int(is_gender_valid) + int(is_runtime_valid) + int(is_release_year_valid) + int(is_language_valid)) >= 3
+        is_valid_input = (int(is_genre_valid) + int(is_runtime_valid) + int(is_release_year_valid) + int(is_language_valid)) >= 3
         return is_valid_input
         
