@@ -14,7 +14,6 @@ def get_movie(id_movie: str):
 
 @router.post("/recommend")
 def recommend_movie(input_recommendation: InputRecommendation):
-    print(input_recommendation)
     movie_service = MovieService()
     recommendation = movie_service.get_recommendation(input_recommendation)
     result = recommendation | {"input": input_recommendation}

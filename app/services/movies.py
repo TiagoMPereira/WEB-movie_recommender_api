@@ -51,11 +51,11 @@ class MovieService():
         
         recommended_ids = recommended["imdb_id"].tolist()
         movies = {}
-        for imdb_id in recommended_ids:
+        for i, imdb_id in enumerate(recommended_ids):
             try:
                 movie_info = self.get_movie_from_mongo(str(imdb_id), as_dict=True)
             except:
                 movie_info = None
-            movies[str(imdb_id)] = movie_info
+            movies["movie"+str(i)] = movie_info
 
         return {"status": "ok", "movies": movies}
