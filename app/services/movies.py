@@ -54,6 +54,7 @@ class MovieService():
         for i, imdb_id in enumerate(recommended_ids):
             try:
                 movie_info = self.get_movie_from_mongo(str(imdb_id), as_dict=True)
+                movie_info['genres'] = movie_info['genres'].replace("'","").replace("[","").replace("]","")
             except:
                 movie_info = None
             movies["movie"+str(i)] = movie_info
